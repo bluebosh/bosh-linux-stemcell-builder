@@ -6,7 +6,7 @@ image_resource:
     repository: bosh/os-image-stemcell-builder
 
 inputs:
-  - name: published-stemcell
+  - name: published-stemcell-bionic
   - name: bosh-linux-stemcell-builder-master
 
 run:

@@ -15,7 +15,7 @@ jobs:
       - get: published-stemcell-bionic
         trigger: true
       - get: bosh-linux-stemcell-builder-master
-      - task: notify-new-stemcell-version
+      - task: notify-new-stemcell-version-bionic
         file: bosh-linux-stemcell-builder-master/ci/xenial/tasks/notify-new-stemcell-version-bionic.yml
         params:
           SLACK_URL: ((slack_url))
