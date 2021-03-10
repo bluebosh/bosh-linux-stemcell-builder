@@ -5,8 +5,18 @@ jobs:
       - get: published-stemcell
         trigger: true
       - get: bosh-linux-stemcell-builder-master
-      - task: notify-new-cluster-version
+      - task: notify-new-stemcell-version
         file: bosh-linux-stemcell-builder-master/ci/xenial/tasks/notify-new-stemcell-version.yml
+        params:
+          SLACK_URL: ((slack_url))
+
+  - name: notify-new-stemcell-version-bionic
+    plan:
+      - get: published-stemcell-bionic
+        trigger: true
+      - get: bosh-linux-stemcell-builder-master
+      - task: notify-new-stemcell-version
+        file: bosh-linux-stemcell-builder-master/ci/xenial/tasks/notify-new-stemcell-version-bionic.yml
         params:
           SLACK_URL: ((slack_url))
 
@@ -48,6 +58,12 @@ resources:
     type: bosh-io-stemcell
     source:
       name: bosh-vsphere-esxi-ubuntu-xenial-go_agent
+      tarball: false
+
+  - name: published-stemcell-bionic
+    type: bosh-io-stemcell
+    source:
+      name: bosh-vsphere-esxi-ubuntu-bionic-go_agent
       tarball: false
 
   - name: boshagent-out
